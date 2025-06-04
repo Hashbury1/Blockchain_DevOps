@@ -61,3 +61,16 @@ Dependencies: Add more forge install commands to include other common smart cont
 Review Before Running: Always inspect the contents of any script before executing it, especially those that use patterns like curl | bash. Understand every command it performs.
 Version Pinning: For highly reproducible environments, consider pinning specific versions of tools (e.g., Rust, Foundry) rather than always installing the latest. This can be done by specifying versions in the installation commands.
 Containerization: For team environments or more complex setups, consider containerizing your development environment using Docker. This ensures consistency across all developer machines.
+
+
+# Build only
+./contracts_workflow.sh build
+
+# Test only
+./contracts_workflow.sh test
+
+# Full workflow (build, test, deploy)
+./contracts_workflow.sh all
+
+# Deploy to different network
+NETWORK=sepolia RPC_URL=https://eth-sepolia.g.alchemy.com/v2/YOUR_KEY ./contracts_workflow.sh deploy
