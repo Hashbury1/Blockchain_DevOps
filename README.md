@@ -23,7 +23,7 @@
 
 ## 🎯 Goals
 
-By day 50, I aim to:
+I aim to:
 - Build automated deployment pipelines for smart contracts
 - Implement monitoring for blockchain nodes
 - Create reproducible infrastructure as code templates
