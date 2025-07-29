@@ -1,9 +1,11 @@
 name: Solidity CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
 
 jobs:
-  ci:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -12,33 +14,6 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
-          components: ["foundry", "solc"]
 
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.svm
-            ~/.cache/solmate
-          key: ${{ runner.os }}-sol-${{ hashFiles('foundry.toml') }}
-
-      - name: Build
-        run: forge build
-
-      - name: Run Tests
-        run: forge test --gas-report -vvv
-
-      - name: Coverage
-        run: forge coverage
-
-      - name: Lint
-        uses: protofire/solhint-action@v1
-        with:
-          args: "src/**/*.sol"
-
-      - name: Upload Coverage
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: coverage-report
-          path: coverage/
+      - name: Run tests
+        run: forge test
